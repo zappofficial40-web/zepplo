@@ -1,9 +1,31 @@
 {
   "name": "ZEPPLO",
   "short_name": "ZEPPLO",
-  "start_url": "/zepplo/",
+  "description": "ZEPPLO - Chat App",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#075E54",
-  "theme_color": "#075E54",
-  "icons": [{"src": "https://cdn-icons-png.flaticon.com/512/733/733585.png","sizes": "512x512","type": "image/png"}]
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#00C853",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
