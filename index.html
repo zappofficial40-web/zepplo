@@ -3,65 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEPPLO - Chat at the Speed of Light</title>
+<title>ZEPPLO - Coming Soon</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#010805;color:#fff;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 85% 10%,#2a5a00 0%,#010805 50%),radial-gradient(circle at 0% 80%,#0a2a00 0%,transparent 40%)}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5%}
-.logo{font-size:30px;font-weight:900;letter-spacing:1px}
-.logo i{color:#a4ff00;font-style:normal}
-nav a{color:#ccc;text-decoration:none;margin:0 13px;font-size:14px}
-.btn{background:#a4ff00;color:#000;padding:11px 18px;border-radius:30px;font-weight:800;border:none}
-.wrap{max-width:1250px;margin:auto;padding:20px 5% 30px}
-.hero{display:flex;gap:20px;align-items:center}
-.left{width:32%}
-.left h1{font-size:48px;line-height:1.05;text-transform:uppercase}
-.left h1 span{color:#a4ff00;font-size:64px;text-shadow:0 0 30px #a4ff00}
-.left p{color:#aaa;margin:16px 0;line-height:1.5;font-size:14px}
-.center{width:42%;text-align:center;position:relative}
-.big{font-size:105px;font-weight:900;line-height:.9;color:#0a1a0a;-webkit-text-stroke:2px #a4ff00;text-shadow:0 0 5px #a4ff00,0 0 20px #a4ff00,8px 8px 0 #062000;transform:perspective(500px) rotateY(-10deg)}
-.big i{color:#a4ff00;font-style:normal;text-shadow:0 0 30px #a4ff00}
-.phone{width:26%;background:#000;border:3px solid #222;border-radius:28px;padding:14px;height:380px;box-shadow:0 0 30px #a4ff00}
-.phone small{color:#888}
-.chat{margin-top:14px;font-size:12px;text-align:left}
-.chat div{margin:10px 0;padding:8px 10px;background:#111;border-radius:10px}
-.me{background:#a4ff00 !important;color:#000 !important;text-align:right;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
-.card{border:1px solid #3a5a00;background:rgba(0,20,0,.7);border-radius:12px;padding:14px;display:flex;gap:10px}
-.card b{font-size:14px;display:block}
-.card p{font-size:11px;color:#aaa;margin-top:4px;line-height:1.4}
-.icon{font-size:24px}
-.notify{text-align:center;margin-top:25px}
-.notify input{padding:14px 18px;width:480px;max-width:85%;border-radius:30px;border:1px solid #a4ff00;background:#021200;color:#fff;outline:none}
-.notify button{background:#a4ff00;padding:14px 22px;border-radius:30px;border:none;font-weight:800;margin-left:8px}
-footer{display:flex;justify-content:space-between;padding:18px 5%;color:#777;font-size:12px}
-@media(max-width:900px){.hero{flex-direction:column}.left,.center,.phone{width:100%}.big{font-size:70px}.grid{grid-template-columns:1fr 1fr}nav a{display:none}}
+body{margin:0;font-family:Arial;background:#0f0f1a;color:white;text-align:center;padding:20px}
+.logo{font-size:50px;font-weight:bold;margin-top:30px}
+.logo span{color:#a855f7}
+.tag{color:#ccc;margin:10px 0 30px}
+.card{background:#1a1a2e;padding:25px;border-radius:20px;max-width:400px;margin:20px auto}
+input{width:90%;padding:12px;border-radius:10px;border:none;margin:10px 0}
+.btn{width:95%;padding:13px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;margin:8px 0;font-size:16px}
+.purple{background:#a855f7;color:white}
+.green{background:#25D366;color:white}
+.dark{background:#2a2a3a;color:white}
+.features{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.feat{background:#1a1a2e;padding:12px;border-radius:12px;width:100px}
 </style>
 </head>
 <body>
-<div class="bg"></div>
-<nav><div class="logo">ZE<i>⚡</i>PPLO</div><div><a href="#">Features</a><a href="#">Security</a><a href="#">Download</a><a href="#">Community</a></div><button class="btn">Get Early Access →</button></nav>
-<div class="wrap">
-<div class="hero">
-<div class="left"><h1>Chat At The Speed Of<br><span>ZEPPLO</span></h1><p>ZEPPLO is the next-generation messaging app — fast, secure, and built for the future.</p></div>
-<div class="center"><div class="big">ZE<i>⚡</i><br>PPLO</div></div>
-<div class="phone"><small>● ● ● &nbsp; Chats</small><div class="chat"><div>👤 Ava • Seen just now<br>Hey!</div><div>👥 Design Team<br>New design ready</div><div>👤 Alex Carter<br>Check this</div><div class="me">On my way! →</div><div>👤 You rock! ⚡</div></div></div>
+<div class="logo">Z<span>EP</span>PLO</div>
+<p class="tag">The Future of Chatting. Fast. Fun. Free.</p>
+<div class="card">
+<h2>Coming Soon</h2>
+<p>We are building something amazing.<br>Be the first to know when we launch.</p>
+<input type="email" id="email" placeholder="Enter your email address">
+<button class="btn purple" onclick="notify()">Get Notified →</button>
+<button class="btn green" onclick="shareSite()">Share ZEPPLO on WhatsApp</button>
+<button class="btn dark" onclick="copyLink()">Copy Link</button>
+<p id="msg" style="color:#4ade80"></p>
 </div>
-
-<div class="grid">
-<div class="card"><span class="icon">📹</span><div><b>Video Calls</b><p>Crystal-clear video calls with seamless connection.</p></div></div>
-<div class="card"><span class="icon">🎙️</span><div><b>Voice Messages</b><p>Send quick voice notes with high-quality audio.</p></div></div>
-<div class="card"><span class="icon">⭕</span><div><b>Status</b><p>Share moments that disappear in 24 hours.</p></div></div>
-<div class="card"><span class="icon">👥</span><div><b>Groups</b><p>Collaborate and chat with groups up to 1,024.</p></div></div>
-<div class="card"><span class="icon">📢</span><div><b>Channels</b><p>Follow channels for updates that matter to you.</p></div></div>
-<div class="card"><span class="icon">😊</span><div><b>Stickers</b><p>Express yourself with fun sticker packs.</p></div></div>
-<div class="card"><span class="icon">🖼️</span><div><b>Photo & Video Sharing</b><p>Share high-resolution media in an instant.</p></div></div>
-<div class="card"><span class="icon">🔒</span><div><b>Secure & Fast</b><p>End-to-end encrypted, lightning fast.</p></div></div>
+<div class="features">
+<div class="feat">📹<br>Video Calls</div>
+<div class="feat">🎙️<br>Voice Chat</div>
+<div class="feat">👥<br>Groups</div>
 </div>
-
-<div class="notify"><p style="letter-spacing:3px;font-size:11px;color:#a4ff00">BE THE FIRST TO EXPERIENCE ZEPPLO</p><h2 style="margin:6px 0 16px">Get Notified</h2><input placeholder="Enter your email address"><button>Coming Soon →</button></div>
-</div>
-<footer><span>© 2025 ZEPPLO</span><span>Privacy • Terms • Support</span></footer>
+<p style="color:#888;margin-top:30px">© 2026 ZEPPLO. All rights reserved.</p>
+<script>
+function notify(){
+  var email = document.getElementById('email').value;
+  if(!email || !email.includes('@')){ alert('Please enter valid email'); return; }
+  var msg = "Hi ZEPPLO! I want to join. My email is: " + email;
+  window.open("https://wa.me/923000000000?text=" + encodeURIComponent(msg), "_blank");
+  document.getElementById('msg').innerText = "Thanks! We will notify you soon ✅";
+}
+function shareSite(){
+  var text = "Check out ZEPPLO - The Future of Chatting! Coming Soon: https://zappofficial40-web.github.io/zepplo/";
+  window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+}
+function copyLink(){
+  navigator.clipboard.writeText("https://zappofficial40-web.github.io/zepplo/");
+  alert("Link Copied! Ab kisi ko bhej do.");
+}
+</script>
 </body>
 </html>
