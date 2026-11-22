@@ -2,73 +2,91 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZEPPLO - Chat At The Speed Of ZEPPLO</title>
+<title>ZEPPLO</title>
+<link rel="manifest" href="manifest.json">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#050807;display:flex;justify-content:center}
-.phone{width:100%;max-width:430px;min-height:100vh;background:#0a0f0e;color:#fff;overflow:hidden}
-.top{padding:22px 20px 0;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:32px;font-weight:900;letter-spacing:1px}
-.logo span{color:#00e676}
-.badge{background:#00e676;color:#000;font-size:11px;font-weight:800;padding:6px 12px;border-radius:20px}
-.hero{margin:18px;background:linear-gradient(135deg,#00e676,#00b0ff);border-radius:22px;padding:22px;color:#000}
-.hero h1{font-size:26px;line-height:1.1}
-.hero p{font-size:13px;margin-top:8px;opacity:.8}
-.card{background:#131a19;margin:0 18px 14px;padding:18px;border-radius:20px;border:1px solid #222}
-.card h2{font-size:18px}
-.card p{font-size:13px;color:#9aa5a3;margin:6px 0 12px}
-input{width:100%;padding:15px;border:1px solid #2a3532;border-radius:14px;background:#0d1312;color:#fff;font-size:15px;outline:none}
-input:focus{border-color:#00e676}
-button{width:100%;padding:15px;border:0;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer;margin-top:10px}
-.btn-green{background:#00e676;color:#000}
-.btn-white{background:#fff;color:#000}
-.btn-dark{background:#1e2826;color:#fff;border:1px solid #2a3532}
-#recaptcha{margin-top:12px;display:flex;justify-content:center;transform:scale(.92)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 18px 18px}
-.item{background:#131a19;border:1px solid #222;border-radius:18px;padding:16px}
-.item b{font-size:14px;display:block;margin-top:10px}
-.item small{color:#9aa5a3;font-size:12px}
-.icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+body{background:#000;display:flex;justify-content:center}
+.phone{width:100%;max-width:430px;min-height:100vh;background:#fff;color:#111;position:relative;overflow:hidden}
 .hidden{display:none}
-.footer{text-align:center;color:#555;font-size:11px;padding:0 0 20px}
+/* PAGE 1 - SPLASH */
+#page1{background:#000;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+#page1 .logo{font-size:64px;font-weight:900;letter-spacing:1px}
+#page1 .logo span{color:#00e676}
+#page1 p{color:#888;margin-top:10px;letter-spacing:3px;font-size:12px}
+#page1 .loader{width:140px;height:4px;background:#222;border-radius:10px;margin-top:40px;overflow:hidden}
+#page1 .loader div{width:40%;height:100%;background:#00e676;border-radius:10px;animation:load 1.2s infinite}
+@keyframes load{0%{margin-left:0}100%{margin-left:100%}}
+/* TOP */
+.top{background:#075E54;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.top b{font-size:22px}
+.top b span{color:#25D366}
+.top small{font-size:20px}
+/* TABS */
+.tabs{display:flex;background:#075E54;color:#c8e6c9}
+.tabs div{flex:1;text-align:center;padding:12px 0;font-size:14px;font-weight:600}
+.tabs .on{color:#fff;border-bottom:3px solid #fff}
+.card{padding:20px}
+.card h2{font-size:22px}
+.card p{color:#666;font-size:13px;margin:8px 0}
+input{width:100%;padding:15px;border:1px solid #ddd;border-radius:10px;margin:8px 0;font-size:15px;outline:none}
+input:focus{border-color:#25D366}
+button{width:100%;padding:15px;border:0;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;margin-top:10px}
+.green{background:#25D366;color:#fff}
+.dark{background:#111;color:#fff}
+.grey{background:#f0f2f5;color:#111}
+.chat{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid #f0f0f0;align-items:center}
+.avatar{width:48px;height:48px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
+.chat b{font-size:15px}
+.chat small{color:#888}
+.time{margin-left:auto;color:#25D366;font-size:12px}
+#recaptcha{display:flex;justify-content:center;margin:10px 0;transform:scale(.9)}
 </style>
 </head>
 <body>
 <div class="phone">
-<div class="top"><div class="logo">ZE<span>⚡</span>PPLO</div><div class="badge">PRO • 199 Rs</div></div>
 
-<div class="hero">
-<h1>Chat At The<br>Speed Of ZEPPLO</h1>
-<p>Fast • Secure • Private • End-to-End Encrypted</p>
+<!-- PAGE 1 - LOGO ONLY -->
+<div id="page1">
+<div class="logo">ZE<span>⚡</span>PPLO</div>
+<p>CHAT AT THE SPEED OF ZEPPLO</p>
+<div class="loader"><div></div></div>
+<p style="letter-spacing:0;margin-top:20px;color:#555;font-size:11px">ZEPPLO SECURE SERVER • ENCRYPTED</p>
 </div>
 
+<!-- PAGE 2 - CREATE ACCOUNT -->
+<div id="page2" class="hidden">
+<div class="top"><b>ZE<span>⚡</span>PPLO</b><small>•••</small></div>
 <div class="card">
-<h2>Welcome Back 👋</h2>
-<p>Enter your phone number. We will send you a real verification code.</p>
+<h2>Create Account 👋</h2>
+<p>Enter your name and phone number to get started.</p>
+<input id="userName" placeholder="Your Name - e.g. Ali">
 <input id="phone" placeholder="+92 300 1234567" type="tel">
 <div id="recaptcha"></div>
-<button class="btn-green" onclick="sendRealOtp()">Send Verification Code →</button>
+<button class="green" onclick="sendOtp()">Send Code →</button>
 <div id="otpBox" class="hidden">
 <input id="otp" placeholder="Enter 6-digit code" type="number">
-<button class="btn-white" onclick="verifyRealOtp()">Verify & Continue</button>
+<button class="dark" onclick="verifyOtp()">Verify & Continue</button>
 </div>
-<p id="status" style="text-align:center;color:#00e676;margin:10px 0 0"></p>
-<button class="btn-dark" onclick="goPro()">⭐ Upgrade To PRO - 0 Ads</button>
+<p id="status" style="text-align:center;color:#075E54"></p>
+<button class="grey" onclick="installApp()">📲 Install ZEPPLO App</button>
+<p style="text-align:center;font-size:11px">By continuing, you agree to ZEPPLO Terms & Privacy Policy</p>
 </div>
-
-<div id="main" class="hidden"><div class="card" style="text-align:center;border-color:#00e676;color:#00e676;font-weight:800">✅ Login Successful - Welcome To ZEPPLO</div></div>
-
-<div class="grid">
-<div class="item"><div class="icon" style="background:#1a3a2a">💬</div><b>Smart Chat</b><small>1-to-1 + Group, Voice & Video</small></div>
-<div class="item"><div class="icon" style="background:#2a1a3a">👻</div><b>Ghost Mode</b><small>Appear offline while online</small></div>
-<div class="item"><div class="icon" style="background:#3a2a00">✨</div><b>AI Beauty</b><small>50+ Premium Filters</small></div>
-<div class="item"><div class="icon" style="background:#002a3a">🤖</div><b>Advance AI</b><small>Reply, Translate, Summarize</small></div>
-<div class="item"><div class="icon" style="background:#3a0000">📸</div><b>Status</b><small>Photo + Video Status</small></div>
-<div class="item"><div class="icon" style="background:#003a1a">💾</div><b>Backup</b><small>Email + Server + Phone</small></div>
 </div>
 
-<div style="margin:0 18px"><button class="btn-green" onclick="alert('Chat Starting...')">Start Chatting 💬</button></div>
-<p class="footer" style="margin-top:14px">ZEPPLO SECURE SERVER • ZEPPLO-FINAL-2026<br>Payments: Easypaisa • UBL • Payoneer</p>
+<!-- PAGE 3 - MAIN WHATSAPP LIKE -->
+<div id="page3" class="hidden">
+<div class="top"><b>ZEPPLO</b><small>🔍 &nbsp; ⋮</small></div>
+<div class="tabs"><div class="on">CHATS</div><div>STATUS</div><div>CALLS</div></div>
+<div class="chat"><div class="avatar">A</div><div><b>Ayesha</b><br><small>Hi! How are you?</small></div><div class="time">10:22</div></div>
+<div class="chat"><div class="avatar" style="background:#075E54">A</div><div><b>Ali Khan</b><br><small>✓✓ See you tomorrow</small></div><div class="time">09:15</div></div>
+<div class="chat"><div class="avatar" style="background:#FF9800">G</div><div><b>Family Group</b><br><small>Ammi: Dinner at 8</small></div><div class="time">Yesterday</div></div>
+<div class="chat"><div class="avatar" style="background:#9C27B0">🤖</div><div><b>ZEPPLO AI</b><br><small>Ask me anything...</small></div><div class="time">Now</div></div>
+<div class="chat"><div class="avatar" style="background:#000">👻</div><div><b>Ghost Mode</b><br><small>You are hidden - FREE</small></div><div class="time">ON</div></div>
+<div style="padding:16px"><button class="green" onclick="alert('New Chat Started')">+ New Chat</button><button class="grey" onclick="alert('PRO - 199 Rs - Easypaisa / UBL / Payoneer - 0 Ads')">⭐ Get PRO - 199 Rs</button></div>
+<p style="text-align:center;color:#aaa;font-size:11px;padding-bottom:20px">Payments: Easypaisa • UBL • Payoneer<br>Backup: Email • Server • Phone</p>
+</div>
+
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -85,18 +103,33 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 let confirmResult;
-window.onload = function(){ window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'normal'}); }
-function sendRealOtp(){
+window.onload = function(){
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'normal'});
+  // PAGE 1 - LOGO 2.5 sec then PAGE 2
+  setTimeout(function(){
+    document.getElementById('page1').classList.add('hidden');
+    document.getElementById('page2').classList.remove('hidden');
+  }, 2500);
+}
+function sendOtp(){
   let phone = document.getElementById('phone').value;
+  let name = document.getElementById('userName').value;
+  if(name.length < 2){ alert("Please enter your name"); return; }
+  if(phone.length < 10){ alert("Please enter correct phone number"); return; }
   document.getElementById('status').innerText = "Sending code...";
   firebase.auth().signInWithPhoneNumber(phone, window.recaptchaVerifier)
-  .then(function(r){ confirmResult = r; document.getElementById('otpBox').classList.remove('hidden'); document.getElementById('status').innerText = "Code sent! Check your phone."; })
+  .then(function(r){ confirmResult = r; document.getElementById('otpBox').classList.remove('hidden'); document.getElementById('status').innerText = "Code sent to " + phone; })
   .catch(function(e){ document.getElementById('status').innerText = e.message; });
 }
-function verifyRealOtp(){
-  confirmResult.confirm(document.getElementById('otp').value).then(function(){ document.getElementById('main').classList.remove('hidden'); alert("Welcome to ZEPPLO!"); }).catch(function(e){ alert(e.message); });
+function verifyOtp(){
+  confirmResult.confirm(document.getElementById('otp').value).then(function(){
+    document.getElementById('page2').classList.add('hidden');
+    document.getElementById('page3').classList.remove('hidden');
+  }).catch(function(e){ alert(e.message); });
 }
-function goPro(){ alert("PRO - 199 Rs\nEasypaisa / UBL / Payoneer\n0 Ads!"); }
+function installApp(){
+  alert("To Install on Mobile:\n1. Open this link in Chrome on Mobile\n2. Tap 3 Dots > Add to Home Screen / Install App\n3. ZEPPLO will install like a real APK");
+}
 </script>
 </body>
 </html>
