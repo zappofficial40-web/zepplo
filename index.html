@@ -5,67 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZEPPLO</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="logo.png">
-<meta name="theme-color" content="#00C853">
 <style>
-body{font-family:Arial;margin:0;background:#000;color:#fff}
-.header{background:#00C853;color:#000;padding:12px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
-.header img{width:40px;height:40px;border-radius:10px}
-.header b{font-size:24px;letter-spacing:1px}
-.box{background:#111;margin:15px;padding:20px;border-radius:15px;text-align:center;border:1px solid #222}
-.logo-big{width:110px;height:110px;border-radius:25px}
-button{background:#00C853;color:#000;border:none;padding:13px 28px;border-radius:25px;font-size:16px;font-weight:bold;cursor:pointer}
-input{width:90%;padding:12px;margin:8px;background:#222;border:1px solid #333;color:white;border-radius:10px}
-.status{background:#111;margin:15px;padding:15px;border-radius:15px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f172a;color:#fff;min-height:100vh}
+.header{background:#16a34a;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.logo-box{display:flex;align-items:center;gap:10px}
+.logo-box img{width:42px;height:42px;border-radius:10px;background:#fff;object-fit:cover}
+.logo-box b{font-size:22px;letter-spacing:1px}
+.logout{background:#fff;color:#16a34a;border:0;padding:8px 14px;border-radius:20px;font-weight:bold}
+.wrap{padding:16px;max-width:480px;margin:auto}
+.card{background:#1e293b;border-radius:16px;padding:20px;text-align:center;margin-bottom:16px}
+.card small{color:#94a3b8}
+.card h1{font-size:36px;margin:8px 0}
+.btn-row{display:flex;gap:10px}
+.btn{flex:1;padding:14px;border:0;border-radius:12px;font-weight:bold;font-size:16px;cursor:pointer}
+.green{background:#22c55e;color:#fff}
+.dark{background:#334155;color:#fff}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game{background:#1e293b;border-radius:16px;padding:20px;text-align:center}
+.game span{font-size:32px}
+.game p{margin-top:8px;font-weight:bold}
+input{width:100%;padding:15px;border-radius:12px;border:0;margin:10px 0;font-size:17px;text-align:center;outline:none}
+.auth-card{background:#1e293b;border-radius:20px;padding:24px;text-align:center;margin-top:40px}
+.auth-card img{width:80px;height:80px;border-radius:20px;background:#fff;object-fit:cover}
+.auth-card h2{margin:12px 0 4px}
+.auth-card p{color:#94a3b8;font-size:14px}
+.msg{color:#fbbf24;margin-top:10px;min-height:20px}
 </style>
 </head>
 <body>
-<div class="header"><img src="logo.png"><b>ZEPPLO</b></div>
 
-<div class="box">
-<img src="logo.png" class="logo-big">
-<h2>Welcome to ZEPPLO</h2>
-<p id="installStatus">Checking Install...</p>
-<button id="installBtn">INSTALL NOW</button>
-<p style="font-size:12px;color:#888;">Works on Chrome, WhatsApp, Facebook - Any Browser</p>
+<div id="authScreen" style="display:none">
+<div class="wrap">
+<div class="auth-card">
+<img src="logo.png">
+<h2>ZEPPLO</h2>
+<p>Apna Mobile Number likhein</p>
+<input id="mobileInput" type="tel" placeholder="03XX-XXXXXXX" maxlength="11">
+<button class="btn green" style="width:100%" onclick="createAccount()">CREATE ACCOUNT</button>
+<button class="btn dark" style="width:100%;margin-top:10px" onclick="loginAccount()">LOGIN</button>
+<div class="msg" id="msg"></div>
+<p style="margin-top:12px;font-size:12px">Sirf Mobile Number se Account banega.<br>Password ki zaroorat nahi.</p>
+</div>
+</div>
 </div>
 
-<div class="box">
-<h3>Login</h3>
-<input placeholder="Enter Your Name">
-<input placeholder="Enter Phone Number">
-<br><button>LOGIN</button>
+<div id="mainScreen" style="display:none">
+<div class="header">
+<div class="logo-box"><img src="logo.png"><b>ZEPPLO</b></div>
+<button class="logout" onclick="logout()">Logout</button>
 </div>
-
-<div class="status">
-<h3>Status</h3>
-<p>Your friends status will show here.</p>
+<div class="wrap">
+<div class="card">
+<small>WALLET BALANCE</small>
+<h1>Rs <span id="balance">0</span></h1>
+<p id="userMobile" style="color:#94a3b8;font-size:14px"></p>
+<div class="btn-row" style="margin-top:14px">
+<button class="btn green" onclick="addMoney()">+ Add Money</button>
+<button class="btn dark" onclick="withdraw()">Withdraw</button>
+</div>
+</div>
+<h3 style="margin-bottom:12px">🎮 Games</h3>
+<div class="games">
+<div class="game" onclick="playGame('Lucky Number')"><span>🎲</span><p>Lucky Number</p></div>
+<div class="game" onclick="playGame('Spin Wheel')"><span>🎡</span><p>Spin Wheel</p></div>
+<div class="game" onclick="playGame('Color Game')"><span>🎨</span><p>Color Game</p></div>
+<div class="game" onclick="playGame('Rummy')"><span>🃏</span><p>Rummy</p></div>
+</div>
+</div>
 </div>
 
 <script>
-let deferredPrompt;
-let installBtn = document.getElementById('installBtn');
-let statusText = document.getElementById('installStatus');
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
-window.addEventListener('beforeinstallprompt', (e)=>{
-  e.preventDefault();
-  deferredPrompt = e;
-  statusText.innerText = "App Ready - Click INSTALL NOW";
-});
-installBtn.addEventListener('click', async ()=>{
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    let choice = await deferredPrompt.userChoice;
-    if(choice.outcome === 'accepted'){ statusText.innerText = "Installed Successfully!"; }
-    deferredPrompt = null;
+let currentUser = localStorage.getItem('zepplo_user');
+let users = JSON.parse(localStorage.getItem('zepplo_users') || '{}');
+let balances = JSON.parse(localStorage.getItem('zepplo_balances') || '{}');
+
+function show(){
+  if(currentUser){
+    document.getElementById('authScreen').style.display='none';
+    document.getElementById('mainScreen').style.display='block';
+    document.getElementById('balance').innerText = balances[currentUser] || 0;
+    document.getElementById('userMobile').innerText = 'Mobile: ' + currentUser;
   } else {
-    alert("To Install: Tap 3 Dots (Top Right) > Add to Home Screen / Install App");
+    document.getElementById('authScreen').style.display='block';
+    document.getElementById('mainScreen').style.display='none';
   }
-});
-window.addEventListener('appinstalled', ()=>{
-  statusText.innerText = "App Installed!";
-  installBtn.style.display = "none";
-});
+}
+function getMobile(){
+  let m = document.getElementById('mobileInput').value.trim();
+  m = m.replace(/[^0-9]/g,'');
+  return m;
+}
+function createAccount(){
+  let m = getMobile();
+  let msg = document.getElementById('msg');
+  if(m.length < 10){ msg.innerText='Sahi Mobile Number likhein (11 digit)'; return; }
+  if(users[m]){ msg.innerText='Ye number pehle se bana hua hai. LOGIN dabayein.'; return; }
+  users[m]=true; balances[m]=0;
+  localStorage.setItem('zepplo_users', JSON.stringify(users));
+  localStorage.setItem('zepplo_balances', JSON.stringify(balances));
+  localStorage.setItem('zepplo_user', m);
+  currentUser=m; show();
+}
+function loginAccount(){
+  let m = getMobile();
+  let msg = document.getElementById('msg');
+  if(m.length < 10){ msg.innerText='Sahi Mobile Number likhein'; return; }
+  if(!users[m]){ msg.innerText='Account nahi mila. Pehle CREATE ACCOUNT dabayein.'; return; }
+  localStorage.setItem('zepplo_user', m);
+  currentUser=m; show();
+}
+function logout(){ localStorage.removeItem('zepplo_user'); currentUser=null; show(); }
+function addMoney(){
+  let amt = prompt('Kitne Rs Add karne hain?');
+  amt = parseInt(amt);
+  if(!amt || amt<=0) return;
+  balances[currentUser]=(balances[currentUser]||0)+amt;
+  localStorage.setItem('zepplo_balances', JSON.stringify(balances));
+  show(); alert(amt+' Rs Add ho gaye!');
+}
+function withdraw(){
+  let amt = prompt('Kitne Rs Withdraw karne hain?');
+  amt = parseInt(amt);
+  if(!amt || amt<=0) return;
+  if(amt > (balances[currentUser]||0)){ alert('Balance kam hai!'); return; }
+  balances[currentUser]-=amt;
+  localStorage.setItem('zepplo_balances', JSON.stringify(balances));
+  show(); alert(amt+' Rs Withdraw Request bhej di!');
+}
+function playGame(name){ alert(name + ' jald aa raha hai!'); }
+show();
 </script>
 </body>
 </html>
