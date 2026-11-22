@@ -6,44 +6,75 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
 body{background:#000;display:flex;justify-content:center}
-.phone{width:100%;max-width:420px;min-height:100vh;background:#0b141a;color:#fff;box-shadow:0 0 30px #00ff88}
+.phone{width:100%;max-width:420px;min-height:100vh;background:#0b141a;color:#fff}
 .top{background:#000;padding:15px;display:flex;justify-content:space-between;align-items:center}
 .top b{font-size:26px}.top b span{color:#00ff88}
 .top button{background:#00ff88;border:0;padding:8px 12px;border-radius:20px;font-weight:bold}
 .hero{background:#00ff88;color:#000;padding:20px;text-align:center}
-.hero h1{font-size:22px;line-height:1.3}
-.hero p{margin-top:6px;font-size:13px}
+.hero h1{font-size:22px}
+.box{background:#111;margin:12px;padding:16px;border-radius:15px}
+input{width:100%;padding:14px;border:0;border-radius:10px;margin:8px 0;font-size:16px;background:#222;color:#fff;outline:none}
+button{width:100%;padding:14px;border:0;border-radius:12px;font-weight:bold;margin:5px 0;font-size:16px;cursor:pointer}
+.green{background:#00ff88}.white{background:#fff}.dark{background:#222;color:#fff}
 .tabs{display:flex;background:#111}
 .tabs div{flex:1;text-align:center;padding:12px 2px;font-size:13px;font-weight:bold}
 .tabs .on{color:#00ff88;border-bottom:3px solid #00ff88}
-.chat{padding:10px}
-.msg{background:#1a242b;padding:12px;border-radius:12px;margin:8px 0;display:flex;gap:10px;align-items:center}
+.msg{background:#1a242b;padding:12px;border-radius:12px;margin:8px;display:flex;gap:10px;align-items:center}
 .avatar{width:45px;height:45px;min-width:45px;background:#00ff88;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
-.msg b{font-size:15px}.msg small{color:#aaa;font-size:12px}
-.btns{padding:15px}
-.btns button{width:100%;padding:14px;border:0;border-radius:12px;font-weight:bold;margin:5px 0;font-size:16px}
-.green{background:#00ff88}.white{background:#fff}
-.bottom{background:#111;padding:12px;text-align:center;color:#888;font-size:11px}
+.hidden{display:none}
 </style>
 </head>
 <body>
 <div class="phone">
-<div class="top"><b>ZE<span>⚡</span>PPLO</b><button>PRO - 199 Rs</button></div>
-<div class="hero"><h1>CHAT AT THE SPEED OF ZEPPLO</h1><p>ZEPPLO SECURE SERVER ⚡ - End To End Encrypted 🔒</p></div>
-<div class="tabs"><div class="on">CHATS 💬</div><div>CALLS 📞</div><div>STATUS 📸</div><div>AI 🤖</div></div>
-<div class="chat">
-<div class="msg"><div class="avatar">👻</div><div><b>Ghost Mode - FREE</b><br><small>Online chupao, sab FREE</small></div></div>
-<div class="msg"><div class="avatar">✨</div><div><b>AI Beauty - FREE</b><br><small>50+ Filters</small></div></div>
-<div class="msg"><div class="avatar">🤖</div><div><b>Advance AI - 6 Wale</b><br><small>AI Chat, Reply, Voice, Photo, Translate</small></div></div>
-<div class="msg"><div class="avatar">💬</div><div><b>Group Chat + 1-to-1</b><br><small>Voice + Video Calls</small></div></div>
-<div class="msg"><div class="avatar">💾</div><div><b>Backup - Email + Server + Phone</b><br><small>Dark / Light Mode 🌙</small></div></div>
+<div class="top"><b>ZE<span>⚡</span>PPLO</b><button onclick="goPro()">PRO - 199 Rs</button></div>
+
+<!-- OTP LOGIN PAGE -->
+<div id="login">
+<div class="hero"><h1>CHAT AT THE SPEED OF ZEPPLO</h1><p>ZEPPLO SECURE SERVER - End To End Encrypted</p></div>
+<div class="box">
+<h2>Welcome to ZEPPLO 👋</h2>
+<p style="color:#aaa;font-size:13px;margin:6px 0">Enter Your Phone Number to Continue</p>
+<input id="phone" placeholder="+92 300 1234567" type="tel">
+<button class="green" onclick="sendOtp()">SEND OTP 📲</button>
+<div id="otpBox" class="hidden">
+<input id="otp" placeholder="Enter 6 Digit OTP - Try 123456" type="number">
+<button class="white" onclick="verifyOtp()">VERIFY OTP ✅</button>
+<p style="color:#00ff88;font-size:12px;text-align:center;margin-top:6px">Demo OTP is: 123456</p>
 </div>
-<div class="btns">
-<button class="green">Chat Shuru Karo 💬</button>
-<button class="white">PRO Lo - 199 Rs - 0 Ads ⭐</button>
-<p style="text-align:center;color:#aaa;margin-top:8px;font-size:13px;line-height:1.5">FREE - Sab Kuch + 3 Ads<br>Payment: Easypaisa + UBL + Payoneer 💳</p>
+<button class="dark" onclick="installApp()">📲 INSTALL ZEPPLO APP</button>
+<p style="text-align:center;color:#aaa;font-size:12px;margin-top:8px">By Continuing, You Agree to ZEPPLO Terms</p>
 </div>
-<div class="bottom">CODE: ZEPPLO-FINAL-2026-LOCK-V3-FINAL-SAVED</div>
 </div>
+
+<!-- MAIN APP PAGE -->
+<div id="main" class="hidden">
+<div class="hero"><h1>Welcome! You Are Logged In ✅</h1><p id="userPhone"></p></div>
+<div class="tabs"><div class="on">CHATS</div><div>CALLS</div><div>STATUS</div><div>AI</div></div>
+<div class="msg" onclick="alert('Ghost Mode Opened')"><div class="avatar">👻</div><div><b>Ghost Mode - FREE</b><br><small>Hide Online Status</small></div></div>
+<div class="msg" onclick="alert('AI Beauty Opened')"><div class="avatar">✨</div><div><b>AI Beauty - FREE</b><br><small>50+ Filters</small></div></div>
+<div class="msg" onclick="alert('Advance AI Opened')"><div class="avatar">🤖</div><div><b>Advance AI - 6 Features</b><br><small>AI Chat, Reply, Voice, Photo, Translate</small></div></div>
+<div class="msg" onclick="alert('Group Chat Opened')"><div class="avatar">💬</div><div><b>Group Chat + 1-to-1</b><br><small>Voice + Video Calls</small></div></div>
+<div style="padding:15px"><button class="green" onclick="alert('Chat Started!')">Start Chat 💬</button><button class="white" onclick="goPro()">Get PRO - 199 Rs - 0 Ads ⭐</button><p style="text-align:center;color:#aaa;font-size:13px;margin-top:8px">FREE - Everything + 3 Ads<br>Payment: Easypaisa + UBL + Payoneer</p></div>
+</div>
+</div>
+<script>
+function sendOtp(){
+let p=document.getElementById('phone').value;
+if(p.length<10){alert("Please Enter Correct Phone Number");return;}
+alert("OTP Sent to "+p+"\nDemo OTP is: 123456");
+document.getElementById('otpBox').classList.remove('hidden');
+}
+function verifyOtp(){
+let o=document.getElementById('otp').value;
+if(o=="123456"){
+document.getElementById('login').classList.add('hidden');
+document.getElementById('main').classList.remove('hidden');
+document.getElementById('userPhone').innerText="Number: "+document.getElementById('phone').value;
+alert("Login Successful! Welcome to ZEPPLO!");
+}else{alert("Wrong OTP! Try 123456");}
+}
+function goPro(){alert("PRO - 199 Rs\nPayment: Easypaisa / UBL / Payoneer\n0 Ads!");}
+function installApp(){alert("To Install:\n1. Click 3 Dots Top Right\n2. Click Add to Home Screen / Install App\n3. ZEPPLO Will Install!");}
+</script>
 </body>
 </html>
