@@ -43,18 +43,18 @@ input{width:100%;padding:15px;border-radius:12px;border:0;margin:10px 0;font-siz
 <div class="wrap">
 <div class="share-box">
 <b>🔗 SHARE LINK</b>
-<div class="link-box" id="shareLink1">https://zappofficial40-web.github.io/zepplo/</div>
+<div class="link-box">https://zappofficial40-web.github.io/zepplo/</div>
 <button class="share-btn" onclick="copyLink()">📋 COPY LINK & SHARE</button>
 </div>
 <div class="auth-card">
 <img src="logo.png">
 <h2>ZEPPLO</h2>
-<p>Apna Mobile Number likhein</p>
+<p>Enter Your Mobile Number</p>
 <input id="mobileInput" type="tel" placeholder="03XX-XXXXXXX" maxlength="11">
 <button class="btn green" style="width:100%" onclick="createAccount()">CREATE ACCOUNT</button>
 <button class="btn dark" style="width:100%;margin-top:10px" onclick="loginAccount()">LOGIN</button>
 <div class="msg" id="msg"></div>
-<p style="margin-top:12px;font-size:12px">Sirf Mobile Number se Account banega.</p>
+<p style="margin-top:12px;font-size:12px">Account will be created with Mobile Number only.</p>
 </div>
 </div>
 </div>
@@ -66,7 +66,7 @@ input{width:100%;padding:15px;border-radius:12px;border:0;margin:10px 0;font-siz
 </div>
 <div class="wrap">
 <div class="share-box">
-<b>🔗 SHARE LINK - Doston Ko Bhejo</b>
+<b>🔗 SHARE LINK - Invite Your Friends</b>
 <div class="link-box">https://zappofficial40-web.github.io/zepplo/</div>
 <button class="share-btn" onclick="copyLink()">📋 COPY LINK & SHARE</button>
 </div>
@@ -108,8 +108,8 @@ function show(){
 function getMobile(){ let m=document.getElementById('mobileInput').value.trim(); return m.replace(/[^0-9]/g,''); }
 function createAccount(){
   let m=getMobile(); let msg=document.getElementById('msg');
-  if(m.length<10){ msg.innerText='Sahi Mobile Number likhein (11 digit)'; return; }
-  if(users[m]){ msg.innerText='Ye number pehle se bana hua hai. LOGIN dabayein.'; return; }
+  if(m.length<10){ msg.innerText='Please enter a valid Mobile Number (11 digits)'; return; }
+  if(users[m]){ msg.innerText='This number already exists. Please press LOGIN.'; return; }
   users[m]=true; balances[m]=0;
   localStorage.setItem('zepplo_users', JSON.stringify(users));
   localStorage.setItem('zepplo_balances', JSON.stringify(balances));
@@ -117,33 +117,33 @@ function createAccount(){
 }
 function loginAccount(){
   let m=getMobile(); let msg=document.getElementById('msg');
-  if(m.length<10){ msg.innerText='Sahi Mobile Number likhein'; return; }
-  if(!users[m]){ msg.innerText='Account nahi mila. Pehle CREATE ACCOUNT dabayein.'; return; }
+  if(m.length<10){ msg.innerText='Please enter a valid Mobile Number'; return; }
+  if(!users[m]){ msg.innerText='Account not found. Please press CREATE ACCOUNT first.'; return; }
   localStorage.setItem('zepplo_user', m); currentUser=m; show();
 }
 function logout(){ localStorage.removeItem('zepplo_user'); currentUser=null; show(); }
 function copyLink(){
   navigator.clipboard.writeText(LINK).then(()=>{
-    alert('Link Copy ho gaya! Ab WhatsApp pe paste karke bhej do ✅\n\n'+LINK);
-    if(navigator.share){ navigator.share({title:'ZEPPLO', text:'ZEPPLO App Join Karo!', url:LINK}); }
+    alert('Link Copied! Now paste it on WhatsApp to share ✅\n\n'+LINK);
+    if(navigator.share){ navigator.share({title:'ZEPPLO', text:'Join ZEPPLO App!', url:LINK}); }
   });
 }
 function addMoney(){
-  let amt=parseInt(prompt('Kitne Rs Add karne hain?'));
+  let amt=parseInt(prompt('How much Rs do you want to Add?'));
   if(!amt||amt<=0) return;
   balances[currentUser]=(balances[currentUser]||0)+amt;
   localStorage.setItem('zepplo_balances', JSON.stringify(balances));
-  show(); alert(amt+' Rs Add ho gaye!');
+  show(); alert(amt+' Rs Added Successfully!');
 }
 function withdraw(){
-  let amt=parseInt(prompt('Kitne Rs Withdraw karne hain?'));
+  let amt=parseInt(prompt('How much Rs do you want to Withdraw?'));
   if(!amt||amt<=0) return;
-  if(amt>(balances[currentUser]||0)){ alert('Balance kam hai!'); return; }
+  if(amt>(balances[currentUser]||0)){ alert('Low Balance!'); return; }
   balances[currentUser]-=amt;
   localStorage.setItem('zepplo_balances', JSON.stringify(balances));
-  show(); alert(amt+' Rs Withdraw Request bhej di!');
+  show(); alert(amt+' Rs Withdraw Request Sent!');
 }
-function playGame(name){ alert(name+' jald aa raha hai!'); }
+function playGame(name){ alert(name + ' is coming soon!'); }
 show();
 </script>
 </body>
