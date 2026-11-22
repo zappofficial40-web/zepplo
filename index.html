@@ -11,13 +11,10 @@ body{background:#000;display:flex;justify-content:center}
 .phone{width:100%;max-width:430px;min-height:100vh;background:#fff;color:#111}
 .hidden{display:none!important}
 #page1{background:#000;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;cursor:pointer}
-.logo-box{width:120px;height:120px;background:#00e676;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:70px;color:#000;box-shadow:0 0 40px #00e67655}
+.logo-box{width:120px;height:120px;background:#00e676;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:70px;color:#000}
 .logo-text{font-size:42px;font-weight:900;margin-top:18px}
 .logo-text span{color:#00e676}
 .top{background:#075E54;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-.tabs{display:flex;background:#075E54;color:#c8e6c9}
-.tabs div{flex:1;text-align:center;padding:12px 0;font-size:14px;font-weight:600}
-.tabs .on{color:#fff;border-bottom:3px solid #fff}
 .card{padding:16px}
 input{width:100%;padding:15px;border:1px solid #ddd;border-radius:10px;margin:8px 0;font-size:15px}
 button{width:100%;padding:15px;border:0;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;margin-top:10px}
@@ -30,46 +27,49 @@ button{width:100%;padding:15px;border:0;border-radius:12px;font-weight:800;font-
 .chat{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid #f0f0f0;align-items:center}
 .avatar{width:48px;height:48px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
 #recaptcha{display:flex;justify-content:center;margin:10px 0;transform:scale(.92)}
+#installStatus{background:#000;color:#00e676;padding:10px 16px;font-size:13px;text-align:center}
 </style>
 </head>
 <body>
 <div class="phone">
-<div id="page1"><div class="logo-box">⚡</div><div class="logo-text">ZE<span>⚡</span>PPLO</div><p style="color:#888;margin-top:10px;letter-spacing:3px;font-size:12px">CHAT AT THE SPEED OF ZEPPLO</p><p style="color:#555;margin-top:30px;font-size:12px">Tap to continue...</p></div>
+<div id="page1"><div class="logo-box">⚡</div><div class="logo-text">ZE<span>⚡</span>PPLO</div><p style="color:#888;margin-top:10px;font-size:12px">CHAT AT THE SPEED OF ZEPPLO</p></div>
 <div id="page2" class="hidden">
 <div class="top"><b>ZEPPLO</b><span>•••</span></div>
+<div id="installStatus">⏳ Checking Install... 5 sec wait karo</div>
 <div class="step-box"><b>👋 Welcome To ZEPPLO! 3 Easy Steps:</b><br><b>STEP 1:</b> Install App 👇<br><b>STEP 2:</b> Create Account<br><b>STEP 3:</b> Start Chatting 🚀</div>
-<div class="install-bar" style="margin:12px 16px 0;border-radius:12px">📲 STEP 1 - INSTALL FIRST <button onclick="installApp()">INSTALL NOW</button></div>
-<div class="share-box"><h3>🚀 Share ZEPPLO Link</h3><div class="link-box" id="myLink">Loading link...</div><button class="green" onclick="shareWhatsApp()">💬 Share On WhatsApp</button><button style="background:#000;color:#fff" onclick="shareLink()">🔗 Share Anywhere</button><button style="background:#fff;border:1px solid #ddd;color:#111" onclick="copyLink()">📋 Copy Link</button><p id="shareStatus" style="font-size:12px;color:#075E54"></p></div>
-<div class="card"><h2>STEP 2 - Create Account 👋</h2><p style="color:#666;font-size:13px">Install kar liya? Ab account banao.</p><input id="userName" placeholder="Your Name"><input id="phone" placeholder="+92 300 1234567" type="tel"><div id="recaptcha"></div><button class="green" onclick="sendOtp()">Send Code →</button><div id="otpBox" class="hidden"><input id="otp" placeholder="Enter 6-digit code" type="number"><button class="dark" onclick="verifyOtp()">Verify & Continue</button></div><p id="status" style="text-align:center;color:#075E54"></p><button class="install" onclick="installApp()">⬇️ INSTALL ZEPPLO APP FIRST</button><button class="grey" onclick="goToMain()">Skip For Now - See Demo →</button></div>
+<div class="install-bar" style="margin:12px 16px 0;border-radius:12px">📲 STEP 1 - INSTALL FIRST <button id="installBtn" onclick="installApp()">INSTALL NOW</button></div>
+<p style="text-align:center;font-size:12px;color:#666;padding:8px 16px">Agar INSTALL NOW kaam na kare to: Chrome ke <b>3 Dots (Upar Right)</b> > <b>Add to Home Screen</b> dabao</p>
+<div class="share-box"><h3>🚀 Share ZEPPLO Link</h3><div class="link-box">https://zappofficial40-web.github.io/zepplo/</div><button class="green" onclick="shareWhatsApp()">💬 Share On WhatsApp</button><button style="background:#000;color:#fff" onclick="shareLink()">🔗 Share Anywhere</button><button style="background:#fff;border:1px solid #ddd;color:#111" onclick="copyLink()">📋 Copy Link</button><p id="shareStatus" style="font-size:12px;color:#075E54"></p></div>
+<div class="card"><h2>STEP 2 - Create Account 👋</h2><input id="userName" placeholder="Your Name"><input id="phone" placeholder="+92 300 1234567" type="tel"><div id="recaptcha"></div><button class="green" onclick="sendOtp()">Send Code →</button><div id="otpBox" class="hidden"><input id="otp" placeholder="Enter 6-digit code" type="number"><button class="dark" onclick="verifyOtp()">Verify & Continue</button></div><p id="status" style="text-align:center;color:#075E54"></p><button class="grey" onclick="goToMain()">Skip For Now - See Demo →</button></div>
 </div>
 <div id="page3" class="hidden">
 <div class="top"><b>ZEPPLO</b><span>🔍 ⋮</span></div>
 <div class="install-bar">📲 Love ZEPPLO? <button onclick="installApp()">INSTALL APP</button></div>
-<div class="tabs"><div class="on">CHATS</div><div>STATUS</div><div>CALLS</div></div>
 <div class="chat"><div class="avatar">A</div><div><b>Ayesha</b><br><small style="color:#888">Hi! How are you?</small></div></div>
 <div class="chat"><div class="avatar" style="background:#075E54">A</div><div><b>Ali Khan</b><br><small style="color:#888">See you tomorrow</small></div></div>
 <div class="chat"><div class="avatar" style="background:#9C27B0">🤖</div><div><b>ZEPPLO AI</b><br><small style="color:#888">Ask me anything...</small></div></div>
-<div class="share-box"><h3>🚀 Share ZEPPLO</h3><div class="link-box" id="myLink2"></div><button class="green" onclick="shareWhatsApp()">💬 Share On WhatsApp</button><button style="background:#000;color:#fff" onclick="shareLink()">🔗 Share Anywhere</button><button style="background:#fff;border:1px solid #ddd;color:#111" onclick="copyLink()">📋 Copy Link</button></div>
-<div style="padding:0 16px 20px"><button class="green">+ New Chat</button><button class="install" onclick="installApp()">⬇️ DOWNLOAD ZEPPLO APP</button></div>
+<div class="share-box"><h3>🚀 Share ZEPPLO</h3><div class="link-box">https://zappofficial40-web.github.io/zepplo/</div><button class="green" onclick="shareWhatsApp()">💬 Share On WhatsApp</button><button style="background:#000;color:#fff" onclick="shareLink()">🔗 Share Anywhere</button><button style="background:#fff;border:1px solid #ddd;color:#111" onclick="copyLink()">📋 Copy Link</button></div>
+<div style="padding:0 16px 20px"><button class="green">+ New Chat</button></div>
 </div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script>
-let confirmResult; let deferredPrompt;
-window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt=e; });
-document.getElementById('myLink').innerText = window.location.href;
-document.getElementById('myLink2').innerText = window.location.href;
+const APP_LINK = "https://zappofficial40-web.github.io/zepplo/";
+let confirmResult; let deferredPrompt = null;
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').then(function(){ document.getElementById('installStatus').innerText = "✅ App Ready - INSTALL NOW dabao"; }).catch(function(){ document.getElementById('installStatus').innerText = "Chrome me kholo - 3 Dots > Add to Home Screen"; }); }
+window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferredPrompt=e; document.getElementById('installStatus').innerText = "✅ INSTALL READY - INSTALL NOW dabao"; document.getElementById('installBtn').innerText = "✅ INSTALL NOW"; });
+window.addEventListener('appinstalled', function(){ document.getElementById('installStatus').innerText = "🎉 Installed! Ab Home Screen se kholo"; });
 function showPage2(){ document.getElementById('page1').classList.add('hidden'); document.getElementById('page2').classList.remove('hidden'); try{ firebase.initializeApp({ apiKey: "AIzaSyBfmuJAI8mVdWS1fI9iTbcEWNraR8eKfeU", authDomain: "zepplo.firebaseapp.com", projectId: "zepplo", storageBucket: "zepplo.firebasestorage.app", messagingSenderId: "94039523453", appId: "1:94039523453:web:bb8a839e2cb67007d2b114" }); window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'normal'}); }catch(e){} }
 setTimeout(showPage2, 800);
 document.getElementById('page1').onclick = showPage2;
 function goToMain(){ document.getElementById('page2').classList.add('hidden'); document.getElementById('page3').classList.remove('hidden'); }
 function sendOtp(){ let p=document.getElementById('phone').value; firebase.auth().signInWithPhoneNumber(p, window.recaptchaVerifier).then(function(r){ confirmResult=r; document.getElementById('otpBox').classList.remove('hidden'); document.getElementById('status').innerText="Code sent to "+p; }).catch(function(e){ document.getElementById('status').innerText=e.message; }); }
 function verifyOtp(){ confirmResult.confirm(document.getElementById('otp').value).then(function(){ goToMain(); }).catch(function(e){ alert(e.message); }); }
-function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); } else { alert("TO INSTALL:\n1. Tap 3 Dots (Top Right) in Chrome\n2. Tap Add to Home Screen / Install App\n3. ZEPPLO will install like a real APK"); } }
-function shareWhatsApp(){ let msg = "Hey! 🤩 ZEPPLO Download Karo - Best Chat App ⚡\n\n3 EASY STEPS:\n1️⃣ Link Kholo\n2️⃣ INSTALL Karo (3 Dots > Add to Home Screen)\n3️⃣ Account Banao & Chat Karo\n\nLink: " + window.location.href; window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank"); document.getElementById('shareStatus').innerText="WhatsApp Opened! Dost ko bhejo."; }
-function shareLink(){ if(navigator.share){ navigator.share({title:"ZEPPLO - Install & Chat", text:"ZEPPLO Download Karo - 1. Link Kholo 2. Install Karo 3. Account Banao", url:window.location.href}); } else { copyLink(); } }
-function copyLink(){ navigator.clipboard.writeText(window.location.href); document.getElementById('shareStatus').innerText="✅ Link Copied!"; alert("Link Copied: "+window.location.href); }
+function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(function(c){ if(c.outcome==='accepted'){ document.getElementById('installStatus').innerText="🎉 Installing... Home Screen check karo"; } deferredPrompt=null; }); } else { alert("MANUAL INSTALL:\n\n1. Is page ko CHROME me kholo (WhatsApp ke andar se nahi)\n2. Upar Right me 3 Dots dabao\n3. Neeche scroll karo - 'Add to Home Screen' / 'Install App' hoga\n4. Uspe dabao > Add / Install dabao"); } }
+function shareWhatsApp(){ let msg = "Hey! 🤩 ZEPPLO Download Karo ⚡\n\n3 STEPS:\n1. Link Kholo\n2. INSTALL Karo\n3. Account Banao\n\nLink: " + APP_LINK; window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank"); }
+function shareLink(){ if(navigator.share){ navigator.share({title:"ZEPPLO", text:"ZEPPLO Download Karo", url:APP_LINK}); } else { copyLink(); } }
+function copyLink(){ navigator.clipboard.writeText(APP_LINK); alert("Link Copied: "+APP_LINK); }
 </script>
 </body>
 </html>
