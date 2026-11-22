@@ -3,90 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEPPLO - Chat at the Speed of Life</title>
+<title>ZEPPLO - Chat at the Speed of Light</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#f6fbf7;color:#111}
-header{background:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:10}
-.logo{font-size:28px;font-weight:900;color:#00c853;letter-spacing:1px}
-.logo span{color:#111}
-nav a{margin:0 12px;text-decoration:none;color:#333;font-weight:600;font-size:15px}
-.nav-btn{background:#00c853;color:#fff!important;padding:10px 18px;border-radius:30px}
-.hero{padding:50px 5%;display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:space-between}
-.hero-left{flex:1;min-width:280px}
-.hero-left h1{font-size:48px;line-height:1.1}
-.hero-left h1 span{color:#00c853}
-.hero-left p{margin:18px 0;color:#555;font-size:17px;line-height:1.6}
-.hero-right{flex:1;min-width:280px;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);text-align:center}
-.hero-right h2{font-size:26px;margin-bottom:5px}
-.hero-right p{color:#777;margin-bottom:18px}
-input{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;margin-bottom:12px;font-size:15px;outline:none}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:10px}
-.btn-green{background:#00c853;color:#fff}
-.btn-whatsapp{background:#25D366;color:#fff}
-.btn-copy{background:#111;color:#fff}
-.small{font-size:13px;color:#888;margin-top:5px}
-.features{padding:30px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
-.card{background:#fff;padding:22px;border-radius:18px;box-shadow:0 5px 15px rgba(0,0,0,0.05)}
-.card h3{margin:10px 0 6px}
-.card p{color:#666;font-size:14px;line-height:1.5}
-footer{text-align:center;padding:25px;color:#888;font-size:14px;background:#fff;margin-top:20px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#010805;color:#fff;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 85% 10%,#2a5a00 0%,#010805 50%),radial-gradient(circle at 0% 80%,#0a2a00 0%,transparent 40%)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5%}
+.logo{font-size:30px;font-weight:900;letter-spacing:1px}
+.logo i{color:#a4ff00;font-style:normal}
+nav a{color:#ccc;text-decoration:none;margin:0 13px;font-size:14px}
+.btn{background:#a4ff00;color:#000;padding:11px 18px;border-radius:30px;font-weight:800;border:none}
+.wrap{max-width:1250px;margin:auto;padding:20px 5% 30px}
+.hero{display:flex;gap:20px;align-items:center}
+.left{width:32%}
+.left h1{font-size:48px;line-height:1.05;text-transform:uppercase}
+.left h1 span{color:#a4ff00;font-size:64px;text-shadow:0 0 30px #a4ff00}
+.left p{color:#aaa;margin:16px 0;line-height:1.5;font-size:14px}
+.center{width:42%;text-align:center;position:relative}
+.big{font-size:105px;font-weight:900;line-height:.9;color:#0a1a0a;-webkit-text-stroke:2px #a4ff00;text-shadow:0 0 5px #a4ff00,0 0 20px #a4ff00,8px 8px 0 #062000;transform:perspective(500px) rotateY(-10deg)}
+.big i{color:#a4ff00;font-style:normal;text-shadow:0 0 30px #a4ff00}
+.phone{width:26%;background:#000;border:3px solid #222;border-radius:28px;padding:14px;height:380px;box-shadow:0 0 30px #a4ff00}
+.phone small{color:#888}
+.chat{margin-top:14px;font-size:12px;text-align:left}
+.chat div{margin:10px 0;padding:8px 10px;background:#111;border-radius:10px}
+.me{background:#a4ff00 !important;color:#000 !important;text-align:right;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
+.card{border:1px solid #3a5a00;background:rgba(0,20,0,.7);border-radius:12px;padding:14px;display:flex;gap:10px}
+.card b{font-size:14px;display:block}
+.card p{font-size:11px;color:#aaa;margin-top:4px;line-height:1.4}
+.icon{font-size:24px}
+.notify{text-align:center;margin-top:25px}
+.notify input{padding:14px 18px;width:480px;max-width:85%;border-radius:30px;border:1px solid #a4ff00;background:#021200;color:#fff;outline:none}
+.notify button{background:#a4ff00;padding:14px 22px;border-radius:30px;border:none;font-weight:800;margin-left:8px;cursor:pointer}
+.share-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn-wa{background:#25D366!important;color:#fff!important}
+.btn-copy{background:#fff!important;color:#000!important}
+footer{display:flex;justify-content:space-between;padding:18px 5%;color:#777;font-size:12px}
+@media(max-width:900px){.hero{flex-direction:column}.left,.center,.phone{width:100%}.big{font-size:70px}.grid{grid-template-columns:1fr 1fr}nav a{display:none}}
 </style>
 </head>
 <body>
-
-<header>
-<div class="logo">ZEPPLO<span>.</span></div>
-<nav>
-<a href="#">Home</a>
-<a href="#">Features</a>
-<a href="#">Download</a>
-<a href="#">About</a>
-<a href="#">Contact</a>
-<a href="#" class="nav-btn">Get Notified →</a>
-</nav>
-</header>
-
+<div class="bg"></div>
+<nav><div class="logo">ZE<i>⚡</i>PPLO</div><div><a href="#">Features</a><a href="#">Security</a><a href="#">Download</a><a href="#">Community</a></div><button class="btn">Get Early Access →</button></nav>
+<div class="wrap">
 <div class="hero">
-<div class="hero-left">
-<h1>Chat at the<br><span>Speed of Life</span></h1>
-<p>A Simple & Fast Messaging App For Everyone. Connect with your friends and family through instant messages, voice calls, and video chats.</p>
-<p>✅ 100% Free &nbsp; ✅ No Ads &nbsp; ✅ Secure</p>
+<div class="left"><h1>Chat At The Speed Of<br><span>ZEPPLO</span></h1><p>ZEPPLO is the next-generation messaging app — fast, secure, and built for the future.</p></div>
+<div class="center"><div class="big">ZE<i>⚡</i><br>PPLO</div></div>
+<div class="phone"><small>● ● ● &nbsp; Chats</small><div class="chat"><div>👤 Ava • Seen just now<br>Hey!</div><div>👥 Design Team<br>New design ready</div><div>👤 Alex Carter<br>Check this</div><div class="me">On my way! →</div><div>👤 You rock! ⚡</div></div></div>
 </div>
 
-<div class="hero-right">
-<h2>Coming Soon</h2>
-<p>Be the first to experience ZEPPLO</p>
-<input type="email" id="email" placeholder="Enter your email">
-<button class="btn btn-green" onclick="notify()">Get Notified →</button>
-<button class="btn btn-whatsapp" onclick="shareWA()">Share ZEPPLO on WhatsApp</button>
-<button class="btn btn-copy" onclick="copyLink()">Copy Link</button>
-<div class="small" id="msg">Video Calls • Voice Chat • Groups</div>
-</div>
-</div>
-
-<div class="features">
-<div class="card"><div style="font-size:30px">🎤</div><h3>Voice Messages</h3><p>Send crystal-clear voice messages instantly to anyone, anywhere.</p></div>
-<div class="card"><div style="font-size:30px">📸</div><h3>Status</h3><p>Share your moments with photos, videos and updates that disappear in 24 hours.</p></div>
-<div class="card"><div style="font-size:30px">👥</div><h3>Groups</h3><p>Create groups for family, friends and work. Chat with up to 1000 members.</p></div>
-<div class="card"><div style="font-size:30px">😀</div><h3>Stickers</h3><p>Express yourself with fun stickers, emojis and GIFs.</p></div>
-<div class="card"><div style="font-size:30px">📁</div><h3>Share Files</h3><p>Share photos, videos, documents and files up to 2GB quickly.</p></div>
-<div class="card"><div style="font-size:30px">📹</div><h3>HD Video Calls</h3><p>High-quality video calls with your loved ones, free forever.</p></div>
+<div class="grid">
+<div class="card"><span class="icon">📹</span><div><b>Video Calls</b><p>Crystal-clear video calls with seamless connection.</p></div></div>
+<div class="card"><span class="icon">🎙️</span><div><b>Voice Messages</b><p>Send quick voice notes with high-quality audio.</p></div></div>
+<div class="card"><span class="icon">⭕</span><div><b>Status</b><p>Share moments that disappear in 24 hours.</p></div></div>
+<div class="card"><span class="icon">👥</span><div><b>Groups</b><p>Collaborate and chat with groups up to 1,024.</p></div></div>
+<div class="card"><span class="icon">📢</span><div><b>Channels</b><p>Follow channels for updates that matter to you.</p></div></div>
+<div class="card"><span class="icon">😊</span><div><b>Stickers</b><p>Express yourself with fun sticker packs.</p></div></div>
+<div class="card"><span class="icon">🖼️</span><div><b>Photo & Video Sharing</b><p>Share high-resolution media in an instant.</p></div></div>
+<div class="card"><span class="icon">🔒</span><div><b>Secure & Fast</b><p>End-to-end encrypted, lightning fast.</p></div></div>
 </div>
 
-<footer>© 2026 ZEPPLO. All rights reserved. | Made with ❤️ in Pakistan</footer>
-
+<div class="notify"><p style="letter-spacing:3px;font-size:11px;color:#a4ff00">BE THE FIRST TO EXPERIENCE ZEPPLO</p><h2 style="margin:6px 0 16px">Get Notified</h2><input id="email" placeholder="Enter your email address"><button onclick="notifyMe()">Coming Soon →</button>
+<div class="share-row">
+<button class="btn-wa" onclick="shareWA()">Share ZEPPLO on WhatsApp</button>
+<button class="btn-copy" onclick="copyLink()">Copy Link</button>
+</div>
+<p id="msg" style="font-size:13px;color:#a4ff00;margin-top:10px"></p>
+</div>
+</div>
+<footer><span>© 2025 ZEPPLO</span><span>Privacy • Terms • Support</span></footer>
 <script>
-function notify(){
+function notifyMe(){
 var e=document.getElementById('email').value;
 if(!e){alert('Please enter your email');return;}
-var text="Hi ZEPPLO! I want to join. My email: "+e;
-window.open("https://wa.me/923000000000?text="+encodeURIComponent(text),"_blank");
+window.open("https://wa.me/923000000000?text="+encodeURIComponent("Hi ZEPPLO! I want to join. My email: "+e),"_blank");
 document.getElementById('msg').innerText="Thanks! We will notify you soon.";
 }
 function shareWA(){
-var text="Check out ZEPPLO - Chat at the Speed of Life! Coming Soon: https://zappofficial40-web.github.io/zepplo/";
-window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+var t="Check out ZEPPLO - Chat at the Speed of Light! Coming Soon: https://zappofficial40-web.github.io/zepplo/";
+window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank");
 }
 function copyLink(){
 navigator.clipboard.writeText("https://zappofficial40-web.github.io/zepplo/").then(()=>{alert("Link Copied!")});
