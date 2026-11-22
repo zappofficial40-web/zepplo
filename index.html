@@ -3,27 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEPPLO - Chat App</title>
+<title>ZEPPLO</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#075E54">
+<link rel="icon" href="logo.png">
+<meta name="theme-color" content="#00C853">
 <style>
-body{font-family:Arial;margin:0;background:#ECE5DD}
-.header{background:#075E54;color:white;padding:15px;text-align:center;font-size:22px;font-weight:bold}
-.box{background:white;margin:15px;padding:20px;border-radius:12px;text-align:center}
-button{background:#25D366;color:white;border:none;padding:12px 25px;border-radius:25px;font-size:16px;cursor:pointer}
-input{width:90%;padding:12px;margin:8px;border:1px solid #ddd;border-radius:8px}
-.status{background:white;margin:15px;padding:15px;border-radius:12px}
-.ad{background:#fff;border:1px solid #ddd;padding:15px;margin:10px 0;border-radius:10px;text-align:center}
+body{font-family:Arial;margin:0;background:#000;color:#fff}
+.header{background:#00C853;color:#000;padding:12px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
+.header img{width:40px;height:40px;border-radius:10px}
+.header b{font-size:24px;letter-spacing:1px}
+.box{background:#111;margin:15px;padding:20px;border-radius:15px;text-align:center;border:1px solid #222}
+.logo-big{width:110px;height:110px;border-radius:25px}
+button{background:#00C853;color:#000;border:none;padding:13px 28px;border-radius:25px;font-size:16px;font-weight:bold;cursor:pointer}
+input{width:90%;padding:12px;margin:8px;background:#222;border:1px solid #333;color:white;border-radius:10px}
+.status{background:#111;margin:15px;padding:15px;border-radius:15px}
 </style>
 </head>
 <body>
-<div class="header">ZEPPLO</div>
+<div class="header"><img src="logo.png"><b>ZEPPLO</b></div>
 
 <div class="box">
+<img src="logo.png" class="logo-big">
 <h2>Welcome to ZEPPLO</h2>
 <p id="installStatus">Checking Install...</p>
 <button id="installBtn">INSTALL NOW</button>
-<p style="font-size:12px;color:gray;">Works on Chrome, WhatsApp, Facebook - Any Browser</p>
+<p style="font-size:12px;color:#888;">Works on Chrome, WhatsApp, Facebook - Any Browser</p>
 </div>
 
 <div class="box">
@@ -36,8 +40,6 @@ input{width:90%;padding:12px;margin:8px;border:1px solid #ddd;border-radius:8px}
 <div class="status">
 <h3>Status</h3>
 <p>Your friends status will show here.</p>
-<div id="adBox"></div>
-<p id="adTimer" style="font-size:12px;color:gray;"></p>
 </div>
 
 <script>
@@ -49,7 +51,6 @@ window.addEventListener('beforeinstallprompt', (e)=>{
   e.preventDefault();
   deferredPrompt = e;
   statusText.innerText = "App Ready - Click INSTALL NOW";
-  installBtn.style.display = "inline-block";
 });
 installBtn.addEventListener('click', async ()=>{
   if(deferredPrompt){
@@ -65,24 +66,6 @@ window.addEventListener('appinstalled', ()=>{
   statusText.innerText = "App Installed!";
   installBtn.style.display = "none";
 });
-let adsSeen = parseInt(localStorage.getItem('zepplo_ads_seen') || 0);
-let lastDate = localStorage.getItem('zepplo_ads_date') || "";
-let today = new Date().toDateString();
-if(lastDate !== today){ adsSeen=0; localStorage.setItem('zepplo_ads_date',today); localStorage.setItem('zepplo_ads_seen',0); }
-let adBox = document.getElementById('adBox');
-if(adsSeen >= 4){ adBox.innerHTML = "<p>Today's 4 Ads Finished. New Ads Tomorrow.</p>"; }
-else {
-  for(let i=0;i<4-adsSeen;i++){
-    adBox.innerHTML += `<div class="ad"><b>Sponsored Ad ${i+1}</b><br><button onclick="watchAd()">Watch Ad - Earn +5 Rs</button></div>`;
-  }
-  document.getElementById('adTimer').innerText = "Remaining Ads Today: " + (4-adsSeen) + " / 4 Ads in 24 Hours";
-}
-function watchAd(){
-  let s = parseInt(localStorage.getItem('zepplo_ads_seen')||0)+1;
-  localStorage.setItem('zepplo_ads_seen',s);
-  alert("Ad Watched! +5 Rs Added to Wallet. Remaining: "+(4-s));
-  location.reload();
-}
 </script>
 </body>
 </html>
