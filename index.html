@@ -2,79 +2,75 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZEPPLO</title>
+<title>ZEPPLO - REAL</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
 body{background:#000;display:flex;justify-content:center}
 .phone{width:100%;max-width:420px;min-height:100vh;background:#0b141a;color:#fff}
-.top{background:#000;padding:15px;display:flex;justify-content:space-between;align-items:center}
-.top b{font-size:26px}.top b span{color:#00ff88}
-.top button{background:#00ff88;border:0;padding:8px 12px;border-radius:20px;font-weight:bold}
-.hero{background:#00ff88;color:#000;padding:20px;text-align:center}
-.hero h1{font-size:22px}
+.logo-box{text-align:center;padding:20px;background:#000}
+.logo{font-size:48px;font-weight:900}.logo span{color:#00ff88}
 .box{background:#111;margin:12px;padding:16px;border-radius:15px}
-input{width:100%;padding:14px;border:0;border-radius:10px;margin:8px 0;font-size:16px;background:#222;color:#fff;outline:none}
+input{width:100%;padding:14px;border:0;border-radius:10px;margin:8px 0;background:#222;color:#fff;font-size:16px}
 button{width:100%;padding:14px;border:0;border-radius:12px;font-weight:bold;margin:5px 0;font-size:16px;cursor:pointer}
 .green{background:#00ff88}.white{background:#fff}.dark{background:#222;color:#fff}
-.tabs{display:flex;background:#111}
-.tabs div{flex:1;text-align:center;padding:12px 2px;font-size:13px;font-weight:bold}
-.tabs .on{color:#00ff88;border-bottom:3px solid #00ff88}
-.msg{background:#1a242b;padding:12px;border-radius:12px;margin:8px;display:flex;gap:10px;align-items:center}
-.avatar{width:45px;height:45px;min-width:45px;background:#00ff88;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.feat{background:#1a242b;padding:12px;border-radius:12px;margin:8px 12px;display:flex;gap:10px;align-items:center}
 .hidden{display:none}
 </style>
 </head>
 <body>
 <div class="phone">
-<div class="top"><b>ZE<span>⚡</span>PPLO</b><button onclick="goPro()">PRO - 199 Rs</button></div>
-
-<!-- OTP LOGIN PAGE -->
-<div id="login">
-<div class="hero"><h1>CHAT AT THE SPEED OF ZEPPLO</h1><p>ZEPPLO SECURE SERVER - End To End Encrypted</p></div>
+<div class="logo-box"><div class="logo">ZE<span>⚡</span>PPLO</div><div style="color:#00ff88;font-size:12px">ZEPPLO SECURE SERVER - REAL 🔒</div></div>
 <div class="box">
-<h2>Welcome to ZEPPLO 👋</h2>
-<p style="color:#aaa;font-size:13px;margin:6px 0">Enter Your Phone Number to Continue</p>
+<h3>Real Login - Firebase OTP 🔥</h3>
+<p style="color:#aaa;font-size:13px">Apna Real Number Dalo - Real OTP Aayega!</p>
 <input id="phone" placeholder="+92 300 1234567" type="tel">
-<button class="green" onclick="sendOtp()">SEND OTP 📲</button>
+<div id="recaptcha"></div>
+<button class="green" onclick="sendRealOtp()">SEND REAL OTP 📲</button>
 <div id="otpBox" class="hidden">
-<input id="otp" placeholder="Enter 6 Digit OTP - Try 123456" type="number">
-<button class="white" onclick="verifyOtp()">VERIFY OTP ✅</button>
-<p style="color:#00ff88;font-size:12px;text-align:center;margin-top:6px">Demo OTP is: 123456</p>
+<input id="otp" placeholder="Real OTP Likho" type="number">
+<button class="white" onclick="verifyRealOtp()">VERIFY REAL OTP ✅</button>
 </div>
-<button class="dark" onclick="installApp()">📲 INSTALL ZEPPLO APP</button>
-<p style="text-align:center;color:#aaa;font-size:12px;margin-top:8px">By Continuing, You Agree to ZEPPLO Terms</p>
+<p id="status" style="color:#00ff88;font-size:13px;text-align:center;margin-top:8px"></p>
 </div>
+<div id="main" class="hidden"><div class="box" style="text-align:center;color:#00ff88">✅ LOGIN SUCCESSFUL! AB REAL CHAT ON HAI!</div></div>
+<div class="feat"><div>💬</div><div><b>Chat - 1-to-1 + Group</b><br><small>Voice + Video Calls</small></div></div>
+<div class="feat"><div>👻</div><div><b>Ghost Mode - FREE</b></div></div>
+<div class="feat"><div>✨</div><div><b>AI Beauty - 50+ Filters</b></div></div>
+<div class="feat"><div>🤖</div><div><b>Advance AI - 6 Features</b></div></div>
+<div class="feat"><div>💾</div><div><b>Backup - Email + Server + Phone</b></div></div>
+<div style="padding:15px"><button class="green" onclick="alert('Chat Ab Firebase Se Jurega!')">Start Real Chat 💬</button></div>
 </div>
 
-<!-- MAIN APP PAGE -->
-<div id="main" class="hidden">
-<div class="hero"><h1>Welcome! You Are Logged In ✅</h1><p id="userPhone"></p></div>
-<div class="tabs"><div class="on">CHATS</div><div>CALLS</div><div>STATUS</div><div>AI</div></div>
-<div class="msg" onclick="alert('Ghost Mode Opened')"><div class="avatar">👻</div><div><b>Ghost Mode - FREE</b><br><small>Hide Online Status</small></div></div>
-<div class="msg" onclick="alert('AI Beauty Opened')"><div class="avatar">✨</div><div><b>AI Beauty - FREE</b><br><small>50+ Filters</small></div></div>
-<div class="msg" onclick="alert('Advance AI Opened')"><div class="avatar">🤖</div><div><b>Advance AI - 6 Features</b><br><small>AI Chat, Reply, Voice, Photo, Translate</small></div></div>
-<div class="msg" onclick="alert('Group Chat Opened')"><div class="avatar">💬</div><div><b>Group Chat + 1-to-1</b><br><small>Voice + Video Calls</small></div></div>
-<div style="padding:15px"><button class="green" onclick="alert('Chat Started!')">Start Chat 💬</button><button class="white" onclick="goPro()">Get PRO - 199 Rs - 0 Ads ⭐</button><p style="text-align:center;color:#aaa;font-size:13px;margin-top:8px">FREE - Everything + 3 Ads<br>Payment: Easypaisa + UBL + Payoneer</p></div>
-</div>
-</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-function sendOtp(){
-let p=document.getElementById('phone').value;
-if(p.length<10){alert("Please Enter Correct Phone Number");return;}
-alert("OTP Sent to "+p+"\nDemo OTP is: 123456");
-document.getElementById('otpBox').classList.remove('hidden');
+const firebaseConfig = {
+  apiKey: "AIzaSyBfmuJAI8mVdWS1fI9iTbcEWNraR8eKfeU",
+  authDomain: "zepplo.firebaseapp.com",
+  projectId: "zepplo",
+  storageBucket: "zepplo.firebasestorage.app",
+  messagingSenderId: "94039523453",
+  appId: "1:94039523453:web:bb8a839e2cb67007d2b114",
+  measurementId: "G-TCW6XFKCR7"
+};
+firebase.initializeApp(firebaseConfig);
+let confirmResult;
+window.onload = function(){
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'normal'});
 }
-function verifyOtp(){
-let o=document.getElementById('otp').value;
-if(o=="123456"){
-document.getElementById('login').classList.add('hidden');
-document.getElementById('main').classList.remove('hidden');
-document.getElementById('userPhone').innerText="Number: "+document.getElementById('phone').value;
-alert("Login Successful! Welcome to ZEPPLO!");
-}else{alert("Wrong OTP! Try 123456");}
+function sendRealOtp(){
+  let phone = document.getElementById('phone').value;
+  document.getElementById('status').innerText = "OTP Bhej Rahe Hain...";
+  firebase.auth().signInWithPhoneNumber(phone, window.recaptchaVerifier)
+  .then(function(r){ confirmResult = r; document.getElementById('otpBox').classList.remove('hidden'); document.getElementById('status').innerText = "Real OTP Bhej Diya! Mobile Check Karo!"; })
+  .catch(function(e){ document.getElementById('status').innerText = "Error: "+e.message; alert(e.message); });
 }
-function goPro(){alert("PRO - 199 Rs\nPayment: Easypaisa / UBL / Payoneer\n0 Ads!");}
-function installApp(){alert("To Install:\n1. Click 3 Dots Top Right\n2. Click Add to Home Screen / Install App\n3. ZEPPLO Will Install!");}
+function verifyRealOtp(){
+  let code = document.getElementById('otp').value;
+  confirmResult.confirm(code).then(function(){ document.getElementById('main').classList.remove('hidden'); alert("Real Login Ho Gaya! Welcome to ZEPPLO!"); })
+  .catch(function(e){ alert("Wrong OTP: "+e.message); });
+}
 </script>
 </body>
 </html>
