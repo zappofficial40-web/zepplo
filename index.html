@@ -44,43 +44,33 @@ input{width:90%;padding:12px;margin:8px;border:1px solid #ddd;border-radius:8px}
 let deferredPrompt;
 let installBtn = document.getElementById('installBtn');
 let statusText = document.getElementById('installStatus');
-
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js');
-}
-
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
 window.addEventListener('beforeinstallprompt', (e)=>{
   e.preventDefault();
   deferredPrompt = e;
-  statusText.innerText = "✅ App Ready - Click INSTALL NOW";
+  statusText.innerText = "App Ready - Click INSTALL NOW";
   installBtn.style.display = "inline-block";
 });
-
 installBtn.addEventListener('click', async ()=>{
   if(deferredPrompt){
     deferredPrompt.prompt();
     let choice = await deferredPrompt.userChoice;
-    if(choice.outcome === 'accepted'){ statusText.innerText = "✅ Installed Successfully!"; }
+    if(choice.outcome === 'accepted'){ statusText.innerText = "Installed Successfully!"; }
     deferredPrompt = null;
   } else {
-    // If browser does not support prompt, open instructions in English
     alert("To Install: Tap 3 Dots (Top Right) > Add to Home Screen / Install App");
   }
 });
-
-// Hide button if already installed
 window.addEventListener('appinstalled', ()=>{
-  statusText.innerText = "✅ App Installed!";
+  statusText.innerText = "App Installed!";
   installBtn.style.display = "none";
 });
-
-// 4 Ads in 24 Hours
 let adsSeen = parseInt(localStorage.getItem('zepplo_ads_seen') || 0);
 let lastDate = localStorage.getItem('zepplo_ads_date') || "";
 let today = new Date().toDateString();
 if(lastDate !== today){ adsSeen=0; localStorage.setItem('zepplo_ads_date',today); localStorage.setItem('zepplo_ads_seen',0); }
 let adBox = document.getElementById('adBox');
-if(adsSeen >= 4){ adBox.innerHTML = "<p>✅ Today's 4 Ads Finished. New Ads Tomorrow.</p>"; }
+if(adsSeen >= 4){ adBox.innerHTML = "<p>Today's 4 Ads Finished. New Ads Tomorrow.</p>"; }
 else {
   for(let i=0;i<4-adsSeen;i++){
     adBox.innerHTML += `<div class="ad"><b>Sponsored Ad ${i+1}</b><br><button onclick="watchAd()">Watch Ad - Earn +5 Rs</button></div>`;
